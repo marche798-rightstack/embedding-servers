@@ -1,0 +1,22 @@
+# Virtual environment
+venv/
+.venv/
+
+# Cache directory contents (keep directory structure)
+huggingface_cache/*
+!huggingface_cache/.gitkeep
+.cache/
+
+# Weaviate data and binary
+# weaviate/weaviate_data/
+weaviate/weaviate
+
+# Log and PID files
+*.log
+*.pid
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+

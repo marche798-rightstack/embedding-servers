@@ -1,0 +1,11 @@
+mkdir -p /workspace/weaviate/weaviate_data
+cd /workspace/weaviate
+
+wget https://github.com/weaviate/weaviate/releases/download/v1.34.0/weaviate-v1.34.0-linux-amd64.tar.gz
+
+tar -xzf weaviate-v1.34.0-linux-amd64.tar.gz
+
+chmod +x weaviate
+
+rm weaviate-v1.34.0-linux-amd64.tar.gz
+
