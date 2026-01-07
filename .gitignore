@@ -10,6 +10,7 @@ huggingface_cache/*
 # Weaviate data and binary
 # weaviate/weaviate_data/
 weaviate/weaviate
+weaviate/certs
 
 # Log and PID files
 *.log
