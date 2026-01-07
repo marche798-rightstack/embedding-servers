@@ -1,0 +1,10 @@
+{
+  "grpc": {
+    "port": 56664,
+    "tls": {
+      "enabled": true,
+      "cert": "/workspace/weaviate-certs/server.crt",
+      "key": "/workspace/weaviate-certs/server.key"
+    }
+  }
+}
