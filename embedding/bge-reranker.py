@@ -158,7 +158,7 @@ async def rerank(request: RerankRequest):
         
         # 배치로 한 번에 스코어 계산 (효율적!)
         logger.info(f"Reranking {len(request.documents)} documents")
-        scores = model.compute_score(pairs)
+        scores = model.compute_score(pairs, normalize=True)
         
         # 단일 문서인 경우 리스트로 변환
         if isinstance(scores, float):
