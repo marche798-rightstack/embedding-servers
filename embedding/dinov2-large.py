@@ -74,7 +74,7 @@ async def create_embeddings(request: EmbeddingRequest):
     return {
         "object": "list",
         "data": data,
-        "model": request.model or "dinov3-large",
+        "model": request.model or "dinov2-large",
         "usage": {"prompt_tokens": len(image_inputs), "total_tokens": len(image_inputs)},
     }
 
