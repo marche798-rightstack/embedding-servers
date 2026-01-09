@@ -22,14 +22,14 @@ if [ -f "$PID_FILE" ]; then
 fi
 
 # Start server
-echo "Starting image embedding server on port 8010..."
+echo "Starting image embedding server on port 8012..."
 nohup python dinov2-large.py > "$LOG_FILE" 2>&1 &
 echo $! > "$PID_FILE"
 
 sleep 3
 
 if kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
-    echo "image embedding server started successfully on port 8010"
+    echo "image embedding server started successfully on port 8012"
     echo "PID: $(cat "$PID_FILE")"
     tail -20 "$LOG_FILE"
 else
