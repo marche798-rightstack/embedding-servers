@@ -20,7 +20,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 async def lifespan(app: FastAPI):
     # 모델 로드 (서버 시작 시 한 번만 실행)
     print(f"🚀 Loading {MODEL_NAME} on {DEVICE}...")
-    app.state.processor = AutoImageProcessor.from_pretrained(MODEL_NAME)
+    app.state.processor = AutoImageProcessor.from_pretrained(MODEL_NAME, use_fast=True)
     app.state.model = AutoModel.from_pretrained(MODEL_NAME).to(DEVICE)
     app.state.model.eval()
     app.state.http_client = httpx.AsyncClient()
