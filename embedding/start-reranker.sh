@@ -7,7 +7,7 @@ LOG_FILE="$SCRIPT_DIR/reranker.log"
 # Stop if already running
 if [ -f "$PID_FILE" ]; then
     echo "Reranker already running. Stopping first..."
-    bash "$SCRIPT_DIR/stop-bge-reranker.sh"
+    bash "$SCRIPT_DIR/stop-reranker.sh"
     sleep 2
 fi
 
