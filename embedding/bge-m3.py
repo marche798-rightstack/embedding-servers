@@ -87,7 +87,13 @@ def normalize_input(raw) -> List[str]:
             return [" ".join(map(str, seq)) for seq in raw]
 
         # 문자열 배열
-        return [str(t).strip() for t in raw if str(t).strip()]
+        normalized = []
+        for t in raw:
+            s = str(t)
+            if not s.strip():
+                raise HTTPException(status_code=400, detail="input cannot be empty")
+            normalized.append(s)
+        return normalized
 
     # 기타는 문자열 캐스팅
     return [str(raw)]
