@@ -53,12 +53,14 @@ def get_model(model_name: str) -> BGEM3FlagModel:
     if model_name not in model_cache:
         logger.info(f"Loading model: {MODEL_MAP[model_name]}")
         try:
+            # FP16은 GPU에서만 사용 (CPU에서는 지원 안 함)
+            use_fp16 = (device == "cuda")
             model_cache[model_name] = BGEM3FlagModel(
                 MODEL_MAP[model_name],
-                use_fp16=True,  # GPU 최적화
+                use_fp16=use_fp16,
                 device=device
             )
-            logger.info(f"Model loaded successfully on {device}")
+            logger.info(f"Model loaded successfully on {device} (FP16: {use_fp16})")
         except Exception as e:
             logger.error(f"Failed to load model: {e}")
             raise HTTPException(status_code=500, detail=f"Model loading failed: {str(e)}")
@@ -164,16 +166,16 @@ async def create_embeddings(req: EmbeddingRequest):
                 })
 
         # usage 추정
-        usage_tokens = sum(len(t.split()) for t in texts)
+        # usage_tokens = sum(len(t.split()) for t in texts)
 
         return {
             "object": "list",
             "data": data,
             "model": req.model,
-            "usage": {
-                "prompt_tokens": usage_tokens,
-                "total_tokens": usage_tokens
-            }
+            # "usage": {
+            #     "prompt_tokens": usage_tokens,
+            #     "total_tokens": usage_tokens
+            # }
         }
     
     except HTTPException:

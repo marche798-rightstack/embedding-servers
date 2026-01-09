@@ -118,12 +118,14 @@ def get_model(model_name: str) -> FlagReranker:
     if model_name not in model_cache:
         logger.info(f"Loading model: {MODEL_MAP[model_name]}")
         try:
+            # FP16은 GPU에서만 사용 (CPU에서는 지원 안 함)
+            use_fp16 = (device == "cuda")
             model_cache[model_name] = FlagReranker(
                 MODEL_MAP[model_name],
-                use_fp16=True,
+                use_fp16=use_fp16,
                 device=device
             )
-            logger.info(f"Model loaded successfully on {device}")
+            logger.info(f"Model loaded successfully on {device} (FP16: {use_fp16})")
         except Exception as e:
             logger.error(f"Failed to load model: {e}")
             raise HTTPException(
