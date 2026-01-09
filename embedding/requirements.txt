@@ -9,8 +9,8 @@ fastapi>=0.110
 uvicorn[standard]>=0.27
 pydantic>=2
 sentence-transformers>=2.0
+FlagEmbedding
 
 python-multipart
 pillow
-
 
